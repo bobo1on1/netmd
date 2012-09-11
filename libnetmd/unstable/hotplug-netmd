@@ -1,0 +1,6 @@
+#!/bin/bash
+logger -t netmd netmd plugged in
+logger -t netmd Device $DEVICE
+chown root.usb $DEVICE
+chmod ug+w $DEVICE
+

@@ -1,0 +1,640 @@
+\section{libnetmd.c File Reference}
+\label{libnetmd_8c}\index{libnetmd.c@{libnetmd.c}}
+{\ttfamily \#include $<$unistd.h$>$}\par
+{\ttfamily \#include \char`\"{}libnetmd.h\char`\"{}}\par
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf NETMD\_\-POLL\_\-TIMEOUT}~1000
+\item 
+\#define {\bf NETMD\_\-SEND\_\-TIMEOUT}~1000
+\item 
+\#define {\bf NETMD\_\-RECV\_\-TIMEOUT}~1000
+\item 
+\#define {\bf NETMD\_\-RECV\_\-TRIES}~30
+\item 
+\#define {\bf BCD\_\-TO\_\-PROPER}(x)~(((((x) \& 0xf0) $>$$>$ 4) $\ast$ 10) + ((x) \& 0x0f))
+\item 
+\#define {\bf NETMD\_\-PLAY}~0x75
+\item 
+\#define {\bf NETMD\_\-PAUSE}~0x7d
+\item 
+\#define {\bf NETMD\_\-REWIND}~0x49
+\item 
+\#define {\bf NETMD\_\-FFORWARD}~0x39
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int {\bf min} (int a, int b)
+\item 
+void {\bf print\_\-hex} (unsigned char $\ast$buf, size\_\-t size)
+\begin{DoxyCompactList}\small\item\em Utility function for checking data. \item\end{DoxyCompactList}\item 
+struct {\bf netmd\_\-pair} const $\ast$ {\bf find\_\-pair} (int hex, struct {\bf netmd\_\-pair} const $\ast$array)
+\begin{DoxyCompactList}\small\item\em enum through an array of pairs looking for a specific hex code. \item\end{DoxyCompactList}\item 
+int {\bf netmd\_\-exch\_\-message} (usb\_\-dev\_\-handle $\ast$dev, unsigned char $\ast$cmd, int cmdlen, unsigned char $\ast$rsp)
+\item 
+struct usb\_\-device $\ast$ {\bf netmd\_\-init} ()
+\begin{DoxyCompactList}\small\item\em used internally to get the size of buffer needed for the returning data. \item\end{DoxyCompactList}\item 
+usb\_\-dev\_\-handle $\ast$ {\bf netmd\_\-open} (struct usb\_\-device $\ast$dev)
+\item 
+int {\bf netmd\_\-get\_\-devname} (usb\_\-dev\_\-handle $\ast$dh, unsigned char $\ast$buf, int buffsize)
+\item 
+int {\bf netmd\_\-request\_\-track\_\-bitrate} (usb\_\-dev\_\-handle $\ast$dev, int track, unsigned char $\ast$data)
+\item 
+int {\bf netmd\_\-request\_\-track\_\-codec} (usb\_\-dev\_\-handle $\ast$dev, int track, char $\ast$data)
+\item 
+int {\bf netmd\_\-request\_\-track\_\-time} (usb\_\-dev\_\-handle $\ast$dev, int track, struct {\bf netmd\_\-track} $\ast$buffer)
+\item 
+int {\bf netmd\_\-request\_\-title} (usb\_\-dev\_\-handle $\ast$dev, int track, char $\ast$buffer, int size)
+\item 
+int {\bf netmd\_\-set\_\-title} (usb\_\-dev\_\-handle $\ast$dev, int track, char $\ast$buffer, int size)
+\item 
+int {\bf netmd\_\-move\_\-track} (usb\_\-dev\_\-handle $\ast$dev, int start, int finish)
+\item 
+int {\bf netmd\_\-set\_\-group\_\-title} (usb\_\-dev\_\-handle $\ast$dev, {\bf minidisc} $\ast$md, int group, char $\ast$title)
+\item 
+int {\bf netmd\_\-initialize\_\-disc\_\-info} (usb\_\-dev\_\-handle $\ast$devh, {\bf minidisc} $\ast$md)
+\item 
+void {\bf print\_\-groups} ({\bf minidisc} $\ast$md)
+\item 
+int {\bf netmd\_\-create\_\-group} (usb\_\-dev\_\-handle $\ast$devh, char $\ast$name)
+\item 
+int {\bf netmd\_\-put\_\-track\_\-in\_\-group} (usb\_\-dev\_\-handle $\ast$dev, {\bf minidisc} $\ast$md, int track, int group)
+\item 
+int {\bf netmd\_\-move\_\-group} (usb\_\-dev\_\-handle $\ast$dev, {\bf minidisc} $\ast$md, int track, int group)
+\item 
+int {\bf netmd\_\-delete\_\-group} (usb\_\-dev\_\-handle $\ast$dev, {\bf minidisc} $\ast$md, int group)
+\item 
+int {\bf netmd\_\-set\_\-track} (usb\_\-dev\_\-handle $\ast$dev, int track)
+\item 
+int {\bf netmd\_\-play} (usb\_\-dev\_\-handle $\ast$dev)
+\item 
+int {\bf netmd\_\-pause} (usb\_\-dev\_\-handle $\ast$dev)
+\item 
+int {\bf netmd\_\-fast\_\-forward} (usb\_\-dev\_\-handle $\ast$dev)
+\item 
+int {\bf netmd\_\-rewind} (usb\_\-dev\_\-handle $\ast$dev)
+\item 
+int {\bf netmd\_\-stop} (usb\_\-dev\_\-handle $\ast$dev)
+\item 
+int {\bf netmd\_\-write\_\-disc\_\-header} (usb\_\-dev\_\-handle $\ast$devh, {\bf minidisc} $\ast$md)
+\item 
+int {\bf netmd\_\-write\_\-track} (usb\_\-dev\_\-handle $\ast$dev, char $\ast$szFile)
+\item 
+int {\bf netmd\_\-delete\_\-track} (usb\_\-dev\_\-handle $\ast$dev, int track)
+\item 
+int {\bf netmd\_\-get\_\-current\_\-track} (usb\_\-dev\_\-handle $\ast$dev)
+\item 
+float {\bf netmd\_\-get\_\-playback\_\-position} (usb\_\-dev\_\-handle $\ast$dev)
+\item 
+void {\bf netmd\_\-clean\_\-disc\_\-info} ({\bf minidisc} $\ast$md)
+\item 
+void {\bf netmd\_\-clean} (usb\_\-dev\_\-handle $\ast$dev)
+\item 
+void {\bf test} (usb\_\-dev\_\-handle $\ast$dev)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct {\bf netmd\_\-devices} const {\bf known\_\-devices} [$\,$]
+\item 
+struct {\bf netmd\_\-pair} const {\bf codecs} [$\,$]
+\item 
+struct {\bf netmd\_\-pair} const {\bf bitrates} [$\,$]
+\item 
+struct {\bf netmd\_\-pair} const {\bf unknown\_\-pair} = \{0x00, \char`\"{}UNKNOWN\char`\"{}\}
+\end{DoxyCompactItemize}
+
+
+\subsection{Define Documentation}
+\index{libnetmd.c@{libnetmd.c}!BCD\_\-TO\_\-PROPER@{BCD\_\-TO\_\-PROPER}}
+\index{BCD\_\-TO\_\-PROPER@{BCD\_\-TO\_\-PROPER}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{BCD\_\-TO\_\-PROPER}]{\setlength{\rightskip}{0pt plus 5cm}\#define BCD\_\-TO\_\-PROPER(x)~(((((x) \& 0xf0) $>$$>$ 4) $\ast$ 10) + ((x) \& 0x0f))}\label{libnetmd_8c_a3a1d6723baf3b897904354f146c75e12}
+
+
+Definition at line 403 of file libnetmd.c.
+
+Referenced by netmd\_\-get\_\-playback\_\-position(), and netmd\_\-request\_\-track\_\-time().\index{libnetmd.c@{libnetmd.c}!NETMD\_\-FFORWARD@{NETMD\_\-FFORWARD}}
+\index{NETMD\_\-FFORWARD@{NETMD\_\-FFORWARD}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{NETMD\_\-FFORWARD}]{\setlength{\rightskip}{0pt plus 5cm}\#define NETMD\_\-FFORWARD~0x39}\label{libnetmd_8c_ab6aef1fa9e12264c502cd621f2af40f8}
+
+
+Definition at line 1061 of file libnetmd.c.
+
+Referenced by netmd\_\-fast\_\-forward().\index{libnetmd.c@{libnetmd.c}!NETMD\_\-PAUSE@{NETMD\_\-PAUSE}}
+\index{NETMD\_\-PAUSE@{NETMD\_\-PAUSE}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{NETMD\_\-PAUSE}]{\setlength{\rightskip}{0pt plus 5cm}\#define NETMD\_\-PAUSE~0x7d}\label{libnetmd_8c_a333024e1c22ad0d39f79792205179316}
+
+
+Definition at line 1059 of file libnetmd.c.
+
+Referenced by netmd\_\-pause().\index{libnetmd.c@{libnetmd.c}!NETMD\_\-PLAY@{NETMD\_\-PLAY}}
+\index{NETMD\_\-PLAY@{NETMD\_\-PLAY}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{NETMD\_\-PLAY}]{\setlength{\rightskip}{0pt plus 5cm}\#define NETMD\_\-PLAY~0x75}\label{libnetmd_8c_a89b7619997d7449da142681412341eb1}
+
+
+Definition at line 1058 of file libnetmd.c.
+
+Referenced by netmd\_\-play().\index{libnetmd.c@{libnetmd.c}!NETMD\_\-POLL\_\-TIMEOUT@{NETMD\_\-POLL\_\-TIMEOUT}}
+\index{NETMD\_\-POLL\_\-TIMEOUT@{NETMD\_\-POLL\_\-TIMEOUT}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{NETMD\_\-POLL\_\-TIMEOUT}]{\setlength{\rightskip}{0pt plus 5cm}\#define NETMD\_\-POLL\_\-TIMEOUT~1000}\label{libnetmd_8c_a647a3a2c2525b2cc2af8fd4d2f87be0f}
+
+
+Definition at line 24 of file libnetmd.c.\index{libnetmd.c@{libnetmd.c}!NETMD\_\-RECV\_\-TIMEOUT@{NETMD\_\-RECV\_\-TIMEOUT}}
+\index{NETMD\_\-RECV\_\-TIMEOUT@{NETMD\_\-RECV\_\-TIMEOUT}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{NETMD\_\-RECV\_\-TIMEOUT}]{\setlength{\rightskip}{0pt plus 5cm}\#define NETMD\_\-RECV\_\-TIMEOUT~1000}\label{libnetmd_8c_af59720f964e0dae63582820081e6d5c1}
+
+
+Definition at line 26 of file libnetmd.c.
+
+Referenced by netmd\_\-exch\_\-message().\index{libnetmd.c@{libnetmd.c}!NETMD\_\-RECV\_\-TRIES@{NETMD\_\-RECV\_\-TRIES}}
+\index{NETMD\_\-RECV\_\-TRIES@{NETMD\_\-RECV\_\-TRIES}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{NETMD\_\-RECV\_\-TRIES}]{\setlength{\rightskip}{0pt plus 5cm}\#define NETMD\_\-RECV\_\-TRIES~30}\label{libnetmd_8c_a8c9fb38843aef75cec4d7ab5d25d3c49}
+
+
+Definition at line 27 of file libnetmd.c.
+
+Referenced by netmd\_\-exch\_\-message().\index{libnetmd.c@{libnetmd.c}!NETMD\_\-REWIND@{NETMD\_\-REWIND}}
+\index{NETMD\_\-REWIND@{NETMD\_\-REWIND}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{NETMD\_\-REWIND}]{\setlength{\rightskip}{0pt plus 5cm}\#define NETMD\_\-REWIND~0x49}\label{libnetmd_8c_a451c99fa0a62524336c61fc49b6062de}
+
+
+Definition at line 1060 of file libnetmd.c.
+
+Referenced by netmd\_\-rewind().\index{libnetmd.c@{libnetmd.c}!NETMD\_\-SEND\_\-TIMEOUT@{NETMD\_\-SEND\_\-TIMEOUT}}
+\index{NETMD\_\-SEND\_\-TIMEOUT@{NETMD\_\-SEND\_\-TIMEOUT}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{NETMD\_\-SEND\_\-TIMEOUT}]{\setlength{\rightskip}{0pt plus 5cm}\#define NETMD\_\-SEND\_\-TIMEOUT~1000}\label{libnetmd_8c_a598fcdbfaa8265c7e9f86f4e005ff54e}
+
+
+Definition at line 25 of file libnetmd.c.
+
+Referenced by netmd\_\-exch\_\-message().
+
+\subsection{Function Documentation}
+\index{libnetmd.c@{libnetmd.c}!find\_\-pair@{find\_\-pair}}
+\index{find\_\-pair@{find\_\-pair}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{find\_\-pair}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf netmd\_\-pair} const$\ast$ find\_\-pair (int {\em hex}, \/  struct {\bf netmd\_\-pair} const $\ast$ {\em pair})\hspace{0.3cm}{\ttfamily  [read]}}\label{libnetmd_8c_a42eddd97d87c196c63c4d4127f68d9a0}
+
+
+enum through an array of pairs looking for a specific hex code. 
+\begin{DoxyParams}{Parameters}
+\item[{\em hex}]hex code to find.  array of pairs to look through. \end{DoxyParams}
+
+
+Definition at line 116 of file libnetmd.c.
+
+References netmd\_\-pair::name.
+
+Referenced by print\_\-disc\_\-info().\index{libnetmd.c@{libnetmd.c}!min@{min}}
+\index{min@{min}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{min}]{\setlength{\rightskip}{0pt plus 5cm}int min (int {\em a}, \/  int {\em b})}\label{libnetmd_8c_abd8bbcfabb3ddef2ccaafb9928a37b95}
+
+
+Definition at line 29 of file libnetmd.c.
+
+Referenced by netmd\_\-write\_\-track().\index{libnetmd.c@{libnetmd.c}!netmd\_\-clean@{netmd\_\-clean}}
+\index{netmd\_\-clean@{netmd\_\-clean}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-clean}]{\setlength{\rightskip}{0pt plus 5cm}void netmd\_\-clean (usb\_\-dev\_\-handle $\ast$ {\em dev})}\label{libnetmd_8c_abed7360767a98deb5b968fa24935d8a5}
+closes the usb descriptors 
+\begin{DoxyParams}{Parameters}
+\item[{\em dev}]pointer to device returned by netmd\_\-open \end{DoxyParams}
+
+
+Definition at line 1508 of file libnetmd.c.
+
+Referenced by main().\index{libnetmd.c@{libnetmd.c}!netmd\_\-clean\_\-disc\_\-info@{netmd\_\-clean\_\-disc\_\-info}}
+\index{netmd\_\-clean\_\-disc\_\-info@{netmd\_\-clean\_\-disc\_\-info}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-clean\_\-disc\_\-info}]{\setlength{\rightskip}{0pt plus 5cm}void netmd\_\-clean\_\-disc\_\-info ({\bf minidisc} $\ast$ {\em md})}\label{libnetmd_8c_a4dd6873fd25e94e4db1cb907d635e691}
+Cleans memory allocated for the name of each group, then cleans groups pointer 
+\begin{DoxyParams}{Parameters}
+\item[{\em md}]pointer to \doxyref{minidisc}{p.}{structminidisc} structure \end{DoxyParams}
+
+
+Definition at line 1494 of file libnetmd.c.
+
+References minidisc::group\_\-count, minidisc::groups, and netmd\_\-group::name.
+
+Referenced by main(), netmd\_\-delete\_\-group(), and netmd\_\-move\_\-group().\index{libnetmd.c@{libnetmd.c}!netmd\_\-create\_\-group@{netmd\_\-create\_\-group}}
+\index{netmd\_\-create\_\-group@{netmd\_\-create\_\-group}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-create\_\-group}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-create\_\-group (usb\_\-dev\_\-handle $\ast$ {\em devh}, \/  char $\ast$ {\em name})}\label{libnetmd_8c_a987a7fe07c0eee0c4fb6825d6966fcfa}
+
+
+Definition at line 715 of file libnetmd.c.
+
+References netmd\_\-exch\_\-message().
+
+Referenced by main().\index{libnetmd.c@{libnetmd.c}!netmd\_\-delete\_\-group@{netmd\_\-delete\_\-group}}
+\index{netmd\_\-delete\_\-group@{netmd\_\-delete\_\-group}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-delete\_\-group}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-delete\_\-group (usb\_\-dev\_\-handle $\ast$ {\em dev}, \/  {\bf minidisc} $\ast$ {\em md}, \/  int {\em group})}\label{libnetmd_8c_a508460c26fd657c7e6df82bac1bdb934}
+Deletes group from disc (but not the tracks in it) 
+\begin{DoxyParams}{Parameters}
+\item[{\em dev}]pointer to device returned by netmd\_\-open \item[{\em md}]pointer to \doxyref{minidisc}{p.}{structminidisc} structure \item[{\em track}]Zero based track to delete \end{DoxyParams}
+
+
+Definition at line 995 of file libnetmd.c.
+
+References netmd\_\-group::finish, minidisc::group\_\-count, minidisc::groups, netmd\_\-group::name, netmd\_\-clean\_\-disc\_\-info(), netmd\_\-write\_\-disc\_\-header(), and netmd\_\-group::start.
+
+Referenced by main().\index{libnetmd.c@{libnetmd.c}!netmd\_\-delete\_\-track@{netmd\_\-delete\_\-track}}
+\index{netmd\_\-delete\_\-track@{netmd\_\-delete\_\-track}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-delete\_\-track}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-delete\_\-track (usb\_\-dev\_\-handle $\ast$ {\em dev}, \/  int {\em track})}\label{libnetmd_8c_ab837ea8838098fab7b218477ea158c27}
+
+
+Definition at line 1436 of file libnetmd.c.
+
+References netmd\_\-exch\_\-message().
+
+Referenced by main().\index{libnetmd.c@{libnetmd.c}!netmd\_\-exch\_\-message@{netmd\_\-exch\_\-message}}
+\index{netmd\_\-exch\_\-message@{netmd\_\-exch\_\-message}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-exch\_\-message}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-exch\_\-message (usb\_\-dev\_\-handle $\ast$ {\em dev}, \/  unsigned char $\ast$ {\em cmd}, \/  int {\em cmdlen}, \/  unsigned char $\ast$ {\em rsp})}\label{libnetmd_8c_a4a89a23fef54ebe74685ab7df9acb2cd}
+Function for internal use by init\_\-disc\_\-info
+
+Function to exchange command/response buffer with \doxyref{minidisc}{p.}{structminidisc} 
+\begin{DoxyParams}{Parameters}
+\item[{\em dev}]device handle \item[{\em cmd}]command buffer \item[{\em cmdlen}]length of command \item[{\em rsp}]response buffer \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of bytes received if $>$0, or error if $<$0 
+\end{DoxyReturn}
+
+
+Definition at line 171 of file libnetmd.c.
+
+References NETMD\_\-RECV\_\-TIMEOUT, NETMD\_\-RECV\_\-TRIES, NETMD\_\-SEND\_\-TIMEOUT, NETMDERR\_\-NOTREADY, NETMDERR\_\-TIMEOUT, and NETMDERR\_\-USB.
+
+Referenced by netmd\_\-create\_\-group(), netmd\_\-delete\_\-track(), netmd\_\-get\_\-current\_\-track(), netmd\_\-get\_\-playback\_\-position(), netmd\_\-move\_\-track(), netmd\_\-request\_\-title(), netmd\_\-request\_\-track\_\-bitrate(), netmd\_\-request\_\-track\_\-codec(), netmd\_\-request\_\-track\_\-time(), netmd\_\-set\_\-title(), netmd\_\-set\_\-track(), netmd\_\-stop(), and netmd\_\-write\_\-disc\_\-header().\index{libnetmd.c@{libnetmd.c}!netmd\_\-fast\_\-forward@{netmd\_\-fast\_\-forward}}
+\index{netmd\_\-fast\_\-forward@{netmd\_\-fast\_\-forward}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-fast\_\-forward}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-fast\_\-forward (usb\_\-dev\_\-handle $\ast$ {\em dev})}\label{libnetmd_8c_a9f208875f27942a77125b4381e7c0acb}
+
+
+Definition at line 1102 of file libnetmd.c.
+
+References NETMD\_\-FFORWARD.
+
+Referenced by main().\index{libnetmd.c@{libnetmd.c}!netmd\_\-get\_\-current\_\-track@{netmd\_\-get\_\-current\_\-track}}
+\index{netmd\_\-get\_\-current\_\-track@{netmd\_\-get\_\-current\_\-track}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-get\_\-current\_\-track}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-get\_\-current\_\-track (usb\_\-dev\_\-handle $\ast$ {\em dev})}\label{libnetmd_8c_a6fae76c17a5e90037035db7d2c17f533}
+gets the currently playing track 
+\begin{DoxyParams}{Parameters}
+\item[{\em dev}]pointer to device returned by netmd\_\-open \end{DoxyParams}
+
+
+Definition at line 1448 of file libnetmd.c.
+
+References netmd\_\-exch\_\-message().
+
+Referenced by print\_\-current\_\-track\_\-info().\index{libnetmd.c@{libnetmd.c}!netmd\_\-get\_\-devname@{netmd\_\-get\_\-devname}}
+\index{netmd\_\-get\_\-devname@{netmd\_\-get\_\-devname}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-get\_\-devname}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-get\_\-devname (usb\_\-dev\_\-handle $\ast$ {\em dev}, \/  unsigned char $\ast$ {\em buf}, \/  int {\em buffsize})}\label{libnetmd_8c_aa72aba5934caab188e15d801c13eb939}
+Get the device name stored in USB device 
+\begin{DoxyParams}{Parameters}
+\item[{\em dev}]pointer to device returned by netmd\_\-open \item[{\em buf}]buffer to hold the name. \item[{\em buffsize}]of buf. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Actual size of buffer, if your buffer is too small resize buffer and recall function. 
+\end{DoxyReturn}
+
+
+Definition at line 311 of file libnetmd.c.
+
+Referenced by main().\index{libnetmd.c@{libnetmd.c}!netmd\_\-get\_\-playback\_\-position@{netmd\_\-get\_\-playback\_\-position}}
+\index{netmd\_\-get\_\-playback\_\-position@{netmd\_\-get\_\-playback\_\-position}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-get\_\-playback\_\-position}]{\setlength{\rightskip}{0pt plus 5cm}float netmd\_\-get\_\-playback\_\-position (usb\_\-dev\_\-handle $\ast$ {\em dev})}\label{libnetmd_8c_ac0df6ac51d05d821851d6381c6db5c62}
+gets the position within the currently playing track in seconds.hundreds 
+\begin{DoxyParams}{Parameters}
+\item[{\em dev}]pointer to device returned by netmd\_\-open \end{DoxyParams}
+
+
+Definition at line 1465 of file libnetmd.c.
+
+References BCD\_\-TO\_\-PROPER, and netmd\_\-exch\_\-message().
+
+Referenced by print\_\-current\_\-track\_\-info().\index{libnetmd.c@{libnetmd.c}!netmd\_\-init@{netmd\_\-init}}
+\index{netmd\_\-init@{netmd\_\-init}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-init}]{\setlength{\rightskip}{0pt plus 5cm}struct usb\_\-device$\ast$ netmd\_\-init ()\hspace{0.3cm}{\ttfamily  [read]}}\label{libnetmd_8c_ad45a44042c43395a951ea365e8e61d45}
+
+
+used internally to get the size of buffer needed for the returning data. 
+\begin{DoxyParams}{Parameters}
+\item[{\em dev}]USB device handle. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+size of buffer to alloc. Finds netmd device and returns pointer to its device handle 
+\end{DoxyReturn}
+
+
+Definition at line 273 of file libnetmd.c.
+
+References netmd\_\-devices::idProduct, and netmd\_\-devices::idVendor.
+
+Referenced by main().\index{libnetmd.c@{libnetmd.c}!netmd\_\-initialize\_\-disc\_\-info@{netmd\_\-initialize\_\-disc\_\-info}}
+\index{netmd\_\-initialize\_\-disc\_\-info@{netmd\_\-initialize\_\-disc\_\-info}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-initialize\_\-disc\_\-info}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-initialize\_\-disc\_\-info (usb\_\-dev\_\-handle $\ast$ {\em dev}, \/  {\bf minidisc} $\ast$ {\em md})}\label{libnetmd_8c_a3771d49a94b547661232071cb2a4b41c}
+used internally -\/ use the int group\_\-count var. 
+\begin{DoxyParams}{Parameters}
+\item[{\em dev}]pointer to device returned by netmd\_\-open \item[{\em md}]pointer to \doxyref{minidisc}{p.}{structminidisc} structure \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of groups, counting disc title as a group (which it is)
+\end{DoxyReturn}
+sets up buffer containing group info. 
+\begin{DoxyParams}{Parameters}
+\item[{\em dev}]pointer to device returned by netmd\_\-open \item[{\em md}]pointer to \doxyref{minidisc}{p.}{structminidisc} structure \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+total size of disc header Group[0] is disc name. You need to make sure you call clean\_\-disc\_\-info before recalling 
+\end{DoxyReturn}
+
+
+Definition at line 592 of file libnetmd.c.
+
+References minidisc::group\_\-count, minidisc::groups, and minidisc::header\_\-length.
+
+Referenced by main().\index{libnetmd.c@{libnetmd.c}!netmd\_\-move\_\-group@{netmd\_\-move\_\-group}}
+\index{netmd\_\-move\_\-group@{netmd\_\-move\_\-group}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-move\_\-group}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-move\_\-group (usb\_\-dev\_\-handle $\ast$ {\em dev}, \/  {\bf minidisc} $\ast$ {\em md}, \/  int {\em track}, \/  int {\em group})}\label{libnetmd_8c_ada520e3d34cbb775f03d5e95f88541b4}
+Moves group around the disc. 
+\begin{DoxyParams}{Parameters}
+\item[{\em dev}]pointer to device returned by netmd\_\-open \item[{\em md}]pointer to \doxyref{minidisc}{p.}{structminidisc} structure \item[{\em track}]Zero based track to make group start at. \item[{\em group}]number of group (0 is title group). \end{DoxyParams}
+
+
+Definition at line 906 of file libnetmd.c.
+
+References netmd\_\-group::finish, minidisc::group\_\-count, groups, minidisc::groups, netmd\_\-group::name, netmd\_\-clean\_\-disc\_\-info(), netmd\_\-move\_\-track(), netmd\_\-write\_\-disc\_\-header(), and netmd\_\-group::start.
+
+Referenced by main().\index{libnetmd.c@{libnetmd.c}!netmd\_\-move\_\-track@{netmd\_\-move\_\-track}}
+\index{netmd\_\-move\_\-track@{netmd\_\-move\_\-track}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-move\_\-track}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-move\_\-track (usb\_\-dev\_\-handle $\ast$ {\em dev}, \/  int {\em start}, \/  int {\em finish})}\label{libnetmd_8c_a437415ef3cc2fc7478a66e5cb1c282b5}
+Moves track around the disc. 
+\begin{DoxyParams}{Parameters}
+\item[{\em dev}]pointer to device returned by netmd\_\-open \item[{\em start}]Zero based index of track to move \item[{\em finish}]Zero based track to make it \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 for fail 1 for success 
+\end{DoxyReturn}
+
+
+Definition at line 491 of file libnetmd.c.
+
+References netmd\_\-exch\_\-message().
+
+Referenced by main(), netmd\_\-move\_\-group(), and netmd\_\-put\_\-track\_\-in\_\-group().\index{libnetmd.c@{libnetmd.c}!netmd\_\-open@{netmd\_\-open}}
+\index{netmd\_\-open@{netmd\_\-open}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-open}]{\setlength{\rightskip}{0pt plus 5cm}usb\_\-dev\_\-handle$\ast$ netmd\_\-open (struct usb\_\-device $\ast$ {\em dev})}\label{libnetmd_8c_a3888bf3184f0a7cd8f4b1b226fab379b}
+Initialize USB subsystem for talking to NetMD 
+\begin{DoxyParams}{Parameters}
+\item[{\em dev}]Pointer returned by netmd\_\-init. \end{DoxyParams}
+
+
+Definition at line 302 of file libnetmd.c.
+
+Referenced by main().\index{libnetmd.c@{libnetmd.c}!netmd\_\-pause@{netmd\_\-pause}}
+\index{netmd\_\-pause@{netmd\_\-pause}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-pause}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-pause (usb\_\-dev\_\-handle $\ast$ {\em dev})}\label{libnetmd_8c_a207a554449e6f319f8f317b165d6f8e7}
+
+
+Definition at line 1095 of file libnetmd.c.
+
+References NETMD\_\-PAUSE.
+
+Referenced by main().\index{libnetmd.c@{libnetmd.c}!netmd\_\-play@{netmd\_\-play}}
+\index{netmd\_\-play@{netmd\_\-play}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-play}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-play (usb\_\-dev\_\-handle $\ast$ {\em dev})}\label{libnetmd_8c_a1591073502446ac502a049b61807b7cc}
+
+
+Definition at line 1088 of file libnetmd.c.
+
+References NETMD\_\-PLAY.
+
+Referenced by main().\index{libnetmd.c@{libnetmd.c}!netmd\_\-put\_\-track\_\-in\_\-group@{netmd\_\-put\_\-track\_\-in\_\-group}}
+\index{netmd\_\-put\_\-track\_\-in\_\-group@{netmd\_\-put\_\-track\_\-in\_\-group}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-put\_\-track\_\-in\_\-group}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-put\_\-track\_\-in\_\-group (usb\_\-dev\_\-handle $\ast$ {\em dev}, \/  {\bf minidisc} $\ast$ {\em md}, \/  int {\em track}, \/  int {\em group})}\label{libnetmd_8c_ade89e2ee6f42861bc3f9fb827fbc89d2}
+Moves track into group 
+\begin{DoxyParams}{Parameters}
+\item[{\em dev}]pointer to device returned by netmd\_\-open \item[{\em md}]pointer to \doxyref{minidisc}{p.}{structminidisc} structure \item[{\em track}]Zero based track to add to group. \item[{\em group}]number of group (0 is title group). \end{DoxyParams}
+
+
+Definition at line 786 of file libnetmd.c.
+
+References netmd\_\-group::finish, minidisc::group\_\-count, minidisc::groups, netmd\_\-move\_\-track(), netmd\_\-write\_\-disc\_\-header(), print\_\-groups(), and netmd\_\-group::start.
+
+Referenced by main().\index{libnetmd.c@{libnetmd.c}!netmd\_\-request\_\-title@{netmd\_\-request\_\-title}}
+\index{netmd\_\-request\_\-title@{netmd\_\-request\_\-title}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-request\_\-title}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-request\_\-title (usb\_\-dev\_\-handle $\ast$ {\em dev}, \/  int {\em track}, \/  char $\ast$ {\em buffer}, \/  int {\em size})}\label{libnetmd_8c_a5a2f6ce697f5b4dd051e7921aff798af}
+Get the title for a specific track. 
+\begin{DoxyParams}{Parameters}
+\item[{\em dev}]pointer to device returned by netmd\_\-open \item[{\em track}]Zero based index of track your requesting. \item[{\em buffer}]buffer to hold the name. \item[{\em size}]of buf. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Actual size of buffer, if your buffer is too small resize buffer and recall function. 
+\end{DoxyReturn}
+
+
+Definition at line 430 of file libnetmd.c.
+
+References netmd\_\-exch\_\-message().
+
+Referenced by print\_\-current\_\-track\_\-info(), and print\_\-disc\_\-info().\index{libnetmd.c@{libnetmd.c}!netmd\_\-request\_\-track\_\-bitrate@{netmd\_\-request\_\-track\_\-bitrate}}
+\index{netmd\_\-request\_\-track\_\-bitrate@{netmd\_\-request\_\-track\_\-bitrate}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-request\_\-track\_\-bitrate}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-request\_\-track\_\-bitrate (usb\_\-dev\_\-handle $\ast$ {\em dev}, \/  int {\em track}, \/  unsigned char $\ast$ {\em data})}\label{libnetmd_8c_ac1e5cb2c9e48a8c9c3ded0c82794c1eb}
+Get the bitrate used to encode a specific track. 
+\begin{DoxyParams}{Parameters}
+\item[{\em dev}]pointer to device returned by netmd\_\-open \item[{\em track}]Zero based index of track your requesting. \item[{\em data}]pointer to store the hex code representing the bitrate. \end{DoxyParams}
+
+
+Definition at line 354 of file libnetmd.c.
+
+References netmd\_\-exch\_\-message().
+
+Referenced by print\_\-disc\_\-info().\index{libnetmd.c@{libnetmd.c}!netmd\_\-request\_\-track\_\-codec@{netmd\_\-request\_\-track\_\-codec}}
+\index{netmd\_\-request\_\-track\_\-codec@{netmd\_\-request\_\-track\_\-codec}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-request\_\-track\_\-codec}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-request\_\-track\_\-codec (usb\_\-dev\_\-handle $\ast$ {\em dev}, \/  int {\em track}, \/  char $\ast$ {\em data})}\label{libnetmd_8c_a7b9bfa57e8975e2f741013394157ca8f}
+Get the codec used to encode a specific track. 
+\begin{DoxyParams}{Parameters}
+\item[{\em dev}]pointer to device returned by netmd\_\-open \item[{\em track}]Zero based index of track your requesting. \item[{\em data}]pointer to store the hex code representing the codec. \end{DoxyParams}
+
+
+Definition at line 378 of file libnetmd.c.
+
+References netmd\_\-exch\_\-message().
+
+Referenced by print\_\-disc\_\-info().\index{libnetmd.c@{libnetmd.c}!netmd\_\-request\_\-track\_\-time@{netmd\_\-request\_\-track\_\-time}}
+\index{netmd\_\-request\_\-track\_\-time@{netmd\_\-request\_\-track\_\-time}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-request\_\-track\_\-time}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-request\_\-track\_\-time (usb\_\-dev\_\-handle $\ast$ {\em dev}, \/  int {\em track}, \/  struct {\bf netmd\_\-track} $\ast$ {\em buffer})}\label{libnetmd_8c_a2766d7cedfea3e17b51c2bfae00cc425}
+
+
+Definition at line 405 of file libnetmd.c.
+
+References BCD\_\-TO\_\-PROPER, netmd\_\-track::minute, netmd\_\-exch\_\-message(), netmd\_\-track::second, netmd\_\-track::tenth, and netmd\_\-track::track.
+
+Referenced by print\_\-disc\_\-info().\index{libnetmd.c@{libnetmd.c}!netmd\_\-rewind@{netmd\_\-rewind}}
+\index{netmd\_\-rewind@{netmd\_\-rewind}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-rewind}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-rewind (usb\_\-dev\_\-handle $\ast$ {\em dev})}\label{libnetmd_8c_a529781d10b769bfabfc6ce7bc0c679a1}
+
+
+Definition at line 1109 of file libnetmd.c.
+
+References NETMD\_\-REWIND.
+
+Referenced by main().\index{libnetmd.c@{libnetmd.c}!netmd\_\-set\_\-group\_\-title@{netmd\_\-set\_\-group\_\-title}}
+\index{netmd\_\-set\_\-group\_\-title@{netmd\_\-set\_\-group\_\-title}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-set\_\-group\_\-title}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-set\_\-group\_\-title (usb\_\-dev\_\-handle $\ast$ {\em dev}, \/  {\bf minidisc} $\ast$ {\em md}, \/  int {\em group}, \/  char $\ast$ {\em title})}\label{libnetmd_8c_a7ad9ed2c03e10eaa80e90d0ca7bed415}
+Sets title for the specified track. 
+\begin{DoxyParams}{Parameters}
+\item[{\em dev}]pointer to device returned by netmd\_\-open \item[{\em md}]pointer to \doxyref{minidisc}{p.}{structminidisc} structure \item[{\em group}]Zero based index of group your renaming (zero is disc title). \item[{\em title}]buffer holding the name. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns 0 for fail 1 for success. 
+\end{DoxyReturn}
+
+
+Definition at line 558 of file libnetmd.c.
+
+References minidisc::groups, netmd\_\-group::name, and netmd\_\-write\_\-disc\_\-header().
+
+Referenced by main().\index{libnetmd.c@{libnetmd.c}!netmd\_\-set\_\-title@{netmd\_\-set\_\-title}}
+\index{netmd\_\-set\_\-title@{netmd\_\-set\_\-title}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-set\_\-title}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-set\_\-title (usb\_\-dev\_\-handle $\ast$ {\em dev}, \/  int {\em track}, \/  char $\ast$ {\em buffer}, \/  int {\em size})}\label{libnetmd_8c_a06d3d9a5cea19ff3984d47f13b13a323}
+Sets title for the specified track. 
+\begin{DoxyParams}{Parameters}
+\item[{\em dev}]pointer to device returned by netmd\_\-open \item[{\em track}]Zero based index of track your requesting. \item[{\em buffer}]buffer to hold the name. \item[{\em size}]of buf. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+returns 0 for fail 1 for success. 
+\end{DoxyReturn}
+
+
+Definition at line 463 of file libnetmd.c.
+
+References netmd\_\-exch\_\-message().
+
+Referenced by import\_\-m3u\_\-playlist(), main(), and netmd\_\-write\_\-track().\index{libnetmd.c@{libnetmd.c}!netmd\_\-set\_\-track@{netmd\_\-set\_\-track}}
+\index{netmd\_\-set\_\-track@{netmd\_\-set\_\-track}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-set\_\-track}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-set\_\-track (usb\_\-dev\_\-handle $\ast$ {\em dev}, \/  int {\em track})}\label{libnetmd_8c_a4cabb3e1910cb8488a9393f1b2d68f6d}
+
+
+Definition at line 1032 of file libnetmd.c.
+
+References netmd\_\-exch\_\-message().
+
+Referenced by main().\index{libnetmd.c@{libnetmd.c}!netmd\_\-stop@{netmd\_\-stop}}
+\index{netmd\_\-stop@{netmd\_\-stop}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-stop}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-stop (usb\_\-dev\_\-handle $\ast$ {\em dev})}\label{libnetmd_8c_abbdb1a9da155ba30fc9005c13d988666}
+
+
+Definition at line 1116 of file libnetmd.c.
+
+References netmd\_\-exch\_\-message().
+
+Referenced by main().\index{libnetmd.c@{libnetmd.c}!netmd\_\-write\_\-disc\_\-header@{netmd\_\-write\_\-disc\_\-header}}
+\index{netmd\_\-write\_\-disc\_\-header@{netmd\_\-write\_\-disc\_\-header}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-write\_\-disc\_\-header}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-write\_\-disc\_\-header (usb\_\-dev\_\-handle $\ast$ {\em devh}, \/  {\bf minidisc} $\ast$ {\em md})}\label{libnetmd_8c_a7cecfde9f6338e4797ae186716e2bad4}
+Creates disc header out of groups and writes it to disc 
+\begin{DoxyParams}{Parameters}
+\item[{\em dev}]pointer to device returned by netmd\_\-open \item[{\em md}]pointer to \doxyref{minidisc}{p.}{structminidisc} structure \end{DoxyParams}
+
+
+Definition at line 1140 of file libnetmd.c.
+
+References netmd\_\-group::finish, minidisc::group\_\-count, minidisc::groups, minidisc::header\_\-length, netmd\_\-group::name, netmd\_\-exch\_\-message(), and netmd\_\-group::start.
+
+Referenced by main(), netmd\_\-delete\_\-group(), netmd\_\-move\_\-group(), netmd\_\-put\_\-track\_\-in\_\-group(), and netmd\_\-set\_\-group\_\-title().\index{libnetmd.c@{libnetmd.c}!netmd\_\-write\_\-track@{netmd\_\-write\_\-track}}
+\index{netmd\_\-write\_\-track@{netmd\_\-write\_\-track}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{netmd\_\-write\_\-track}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-write\_\-track (usb\_\-dev\_\-handle $\ast$ {\em dev}, \/  char $\ast$ {\em szFile})}\label{libnetmd_8c_abce98001e34aaba93a15170918bef8be}
+Writes atrac file to device 
+\begin{DoxyParams}{Parameters}
+\item[{\em dev}]pointer to device returned by netmd\_\-open \item[{\em szFile}]Full path to file to write. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$<$ 0 on fail else 1 
+\end{DoxyReturn}
+\begin{Desc}
+\item[{\bf Bug}]doesnt work yet \end{Desc}
+
+
+Definition at line 1258 of file libnetmd.c.
+
+References min(), netmd\_\-set\_\-title(), and print\_\-hex().
+
+Referenced by main().\index{libnetmd.c@{libnetmd.c}!print\_\-groups@{print\_\-groups}}
+\index{print\_\-groups@{print\_\-groups}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{print\_\-groups}]{\setlength{\rightskip}{0pt plus 5cm}void print\_\-groups ({\bf minidisc} $\ast$ {\em md})}\label{libnetmd_8c_a7c16445990869abd360a8d9f971f35be}
+
+
+Definition at line 705 of file libnetmd.c.
+
+References netmd\_\-group::finish, minidisc::group\_\-count, minidisc::groups, netmd\_\-group::name, and netmd\_\-group::start.
+
+Referenced by netmd\_\-put\_\-track\_\-in\_\-group().\index{libnetmd.c@{libnetmd.c}!print\_\-hex@{print\_\-hex}}
+\index{print\_\-hex@{print\_\-hex}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{print\_\-hex}]{\setlength{\rightskip}{0pt plus 5cm}void print\_\-hex (unsigned char $\ast$ {\em buf}, \/  size\_\-t {\em size})}\label{libnetmd_8c_a641ce85692781362f9be3600a6d7e608}
+
+
+Utility function for checking data. 
+\begin{DoxyParams}{Parameters}
+\item[{\em buf}]buffer to print. \item[{\em size}]length of buffer to print. \end{DoxyParams}
+
+
+Definition at line 69 of file libnetmd.c.
+
+Referenced by netmd\_\-write\_\-track().\index{libnetmd.c@{libnetmd.c}!test@{test}}
+\index{test@{test}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{test}]{\setlength{\rightskip}{0pt plus 5cm}void test (usb\_\-dev\_\-handle $\ast$ {\em dev})}\label{libnetmd_8c_a1c2f888e29b40c08039239903c1eb1b2}
+testing function for testing weird unknown commands 
+
+Definition at line 1515 of file libnetmd.c.
+
+Referenced by main().
+
+\subsection{Variable Documentation}
+\index{libnetmd.c@{libnetmd.c}!bitrates@{bitrates}}
+\index{bitrates@{bitrates}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{bitrates}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf netmd\_\-pair} const {\bf bitrates}[$\,$]}\label{libnetmd_8c_a04a547af7ff6bc1b8d00e2b07032781b}
+{\bfseries Initial value:}
+\begin{DoxyCode}
+ 
+{
+        {0x90, "Stereo"},
+        {0x92, "LP2"},
+        {0x93, "LP4"},
+        {0, 0} 
+}
+\end{DoxyCode}
+list of known bitrates (mapped to protocol ID) that can be used in NetMD devices 
+
+Definition at line 59 of file libnetmd.c.
+
+Referenced by print\_\-disc\_\-info().\index{libnetmd.c@{libnetmd.c}!codecs@{codecs}}
+\index{codecs@{codecs}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{codecs}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf netmd\_\-pair} const {\bf codecs}[$\,$]}\label{libnetmd_8c_aa7b25d43b5db21ce508e8a88d96a5973}
+{\bfseries Initial value:}
+\begin{DoxyCode}
+ 
+{
+        {0x00, "ATRAC"},
+        {0x03, "ATRAC3"},
+        {0, 0} 
+}
+\end{DoxyCode}
+list of known codecs (mapped to protocol ID) that can be used in NetMD devices 
+
+Definition at line 51 of file libnetmd.c.
+
+Referenced by print\_\-disc\_\-info().\index{libnetmd.c@{libnetmd.c}!known\_\-devices@{known\_\-devices}}
+\index{known\_\-devices@{known\_\-devices}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{known\_\-devices}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf netmd\_\-devices} const {\bf known\_\-devices}[$\,$]}\label{libnetmd_8c_aecba76a606a32dc69d21dc950476481a}
+{\bfseries Initial value:}
+\begin{DoxyCode}
+ 
+{
+        {0x54c, 0x75}, 
+        {0x54c, 0x80}, 
+        {0x54c, 0x81}, 
+        {0x54c, 0x84}, 
+        {0x54c, 0x85}, 
+        {0x54c, 0x86}, 
+        {0x54c, 0xc6}, 
+        {0x54c, 0xc8}, 
+        {0x54c, 0xc9}, 
+        {0, 0} 
+}
+\end{DoxyCode}
+list of known vendor/prod id's for NetMD devices 
+
+Definition at line 36 of file libnetmd.c.\index{libnetmd.c@{libnetmd.c}!unknown\_\-pair@{unknown\_\-pair}}
+\index{unknown\_\-pair@{unknown\_\-pair}!libnetmd.c@{libnetmd.c}}
+\subsubsection[{unknown\_\-pair}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf netmd\_\-pair} const {\bf unknown\_\-pair} = \{0x00, \char`\"{}UNKNOWN\char`\"{}\}}\label{libnetmd_8c_a5bb438beaeccd9d912c20a0f35af1d85}
+
+
+Definition at line 67 of file libnetmd.c.

@@ -1,0 +1,154 @@
+\section{libnetmd\_\-secure.c File Reference}
+\label{libnetmd__secure_8c}\index{libnetmd\_\-secure.c@{libnetmd\_\-secure.c}}
+{\ttfamily \#include $<$string.h$>$}\par
+{\ttfamily \#include $<$usb.h$>$}\par
+{\ttfamily \#include \char`\"{}libnetmd.h\char`\"{}}\par
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf SECURE\_\-CMD\_\-HDR}~0x00,0x18,0x00,0x08,0x00,0x46,0xf0,0x03,0x01,0x03
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int {\bf netmd\_\-secure\_\-cmd\_\-80} (usb\_\-dev\_\-handle $\ast$dev)
+\begin{DoxyCompactList}\small\item\em Start secure session? \item\end{DoxyCompactList}\item 
+int {\bf netmd\_\-secure\_\-cmd\_\-11} (usb\_\-dev\_\-handle $\ast$dev, unsigned int $\ast$player\_\-id)
+\begin{DoxyCompactList}\small\item\em Get 4-\/byte player ID? \item\end{DoxyCompactList}\item 
+int {\bf netmd\_\-secure\_\-cmd\_\-12} (usb\_\-dev\_\-handle $\ast$dev, unsigned char $\ast$ekb\_\-head, unsigned char $\ast$ekb\_\-body)
+\begin{DoxyCompactList}\small\item\em Send 40-\/byte EKB (enabling key block)? \item\end{DoxyCompactList}\item 
+int {\bf netmd\_\-secure\_\-cmd\_\-20} (usb\_\-dev\_\-handle $\ast$dev, unsigned char $\ast$rand\_\-in, unsigned char $\ast$rand\_\-out)
+\begin{DoxyCompactList}\small\item\em Exchange 8-\/byte random? \item\end{DoxyCompactList}\item 
+int {\bf netmd\_\-secure\_\-cmd\_\-21} (usb\_\-dev\_\-handle $\ast$dev)
+\begin{DoxyCompactList}\small\item\em Discard random? \item\end{DoxyCompactList}\item 
+int {\bf netmd\_\-secure\_\-cmd\_\-81} (usb\_\-dev\_\-handle $\ast$dev)
+\begin{DoxyCompactList}\small\item\em End secure session? \item\end{DoxyCompactList}\item 
+int {\bf netmd\_\-secure\_\-cmd\_\-22} (usb\_\-dev\_\-handle $\ast$dev, unsigned char $\ast$hash)
+\begin{DoxyCompactList}\small\item\em Send 32-\/byte hash? \item\end{DoxyCompactList}\item 
+int {\bf netmd\_\-secure\_\-cmd\_\-28} (usb\_\-dev\_\-handle $\ast$dev, unsigned int track\_\-type, unsigned int length\_\-byte, unsigned int length, unsigned int $\ast$track\_\-nr)
+\begin{DoxyCompactList}\small\item\em Prepare USB download? \item\end{DoxyCompactList}\item 
+int {\bf netmd\_\-secure\_\-cmd\_\-48} (usb\_\-dev\_\-handle $\ast$dev, unsigned int track\_\-nr, unsigned char $\ast$hash)
+\begin{DoxyCompactList}\small\item\em Verify track with 8-\/byte hash? \item\end{DoxyCompactList}\item 
+int {\bf netmd\_\-secure\_\-cmd\_\-23} (usb\_\-dev\_\-handle $\ast$dev, unsigned int track\_\-nr, unsigned char $\ast$hash\_\-id)
+\begin{DoxyCompactList}\small\item\em Get 8-\/byte hash id of a track? \item\end{DoxyCompactList}\item 
+int {\bf netmd\_\-secure\_\-cmd\_\-40} (usb\_\-dev\_\-handle $\ast$dev, unsigned int track\_\-nr, unsigned char $\ast$signature)
+\begin{DoxyCompactList}\small\item\em Secure delete with 8-\/byte signature? \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Define Documentation}
+\index{libnetmd\_\-secure.c@{libnetmd\_\-secure.c}!SECURE\_\-CMD\_\-HDR@{SECURE\_\-CMD\_\-HDR}}
+\index{SECURE\_\-CMD\_\-HDR@{SECURE\_\-CMD\_\-HDR}!libnetmd_secure.c@{libnetmd\_\-secure.c}}
+\subsubsection[{SECURE\_\-CMD\_\-HDR}]{\setlength{\rightskip}{0pt plus 5cm}\#define SECURE\_\-CMD\_\-HDR~0x00,0x18,0x00,0x08,0x00,0x46,0xf0,0x03,0x01,0x03}\label{libnetmd__secure_8c_a6a443bfc9f9fc2f7ff041f66f8799dc3}
+
+
+Definition at line 16 of file libnetmd\_\-secure.c.
+
+Referenced by netmd\_\-secure\_\-cmd\_\-11(), netmd\_\-secure\_\-cmd\_\-12(), netmd\_\-secure\_\-cmd\_\-20(), netmd\_\-secure\_\-cmd\_\-21(), netmd\_\-secure\_\-cmd\_\-22(), netmd\_\-secure\_\-cmd\_\-23(), netmd\_\-secure\_\-cmd\_\-28(), netmd\_\-secure\_\-cmd\_\-40(), netmd\_\-secure\_\-cmd\_\-48(), netmd\_\-secure\_\-cmd\_\-80(), and netmd\_\-secure\_\-cmd\_\-81().
+
+\subsection{Function Documentation}
+\index{libnetmd\_\-secure.c@{libnetmd\_\-secure.c}!netmd\_\-secure\_\-cmd\_\-11@{netmd\_\-secure\_\-cmd\_\-11}}
+\index{netmd\_\-secure\_\-cmd\_\-11@{netmd\_\-secure\_\-cmd\_\-11}!libnetmd_secure.c@{libnetmd\_\-secure.c}}
+\subsubsection[{netmd\_\-secure\_\-cmd\_\-11}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-secure\_\-cmd\_\-11 (usb\_\-dev\_\-handle $\ast$ {\em dev}, \/  unsigned int $\ast$ {\em player\_\-id})}\label{libnetmd__secure_8c_a32fb20a60c9091f46cd66095e27780ba}
+
+
+Get 4-\/byte player ID? 
+
+Definition at line 70 of file libnetmd\_\-secure.c.
+
+References SECURE\_\-CMD\_\-HDR.\index{libnetmd\_\-secure.c@{libnetmd\_\-secure.c}!netmd\_\-secure\_\-cmd\_\-12@{netmd\_\-secure\_\-cmd\_\-12}}
+\index{netmd\_\-secure\_\-cmd\_\-12@{netmd\_\-secure\_\-cmd\_\-12}!libnetmd_secure.c@{libnetmd\_\-secure.c}}
+\subsubsection[{netmd\_\-secure\_\-cmd\_\-12}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-secure\_\-cmd\_\-12 (usb\_\-dev\_\-handle $\ast$ {\em dev}, \/  unsigned char $\ast$ {\em ekb\_\-head}, \/  unsigned char $\ast$ {\em ekb\_\-body})}\label{libnetmd__secure_8c_a9d837fade5c5943f2a7ee46b36ff8f31}
+
+
+Send 40-\/byte EKB (enabling key block)? 
+
+Definition at line 89 of file libnetmd\_\-secure.c.
+
+References SECURE\_\-CMD\_\-HDR.\index{libnetmd\_\-secure.c@{libnetmd\_\-secure.c}!netmd\_\-secure\_\-cmd\_\-20@{netmd\_\-secure\_\-cmd\_\-20}}
+\index{netmd\_\-secure\_\-cmd\_\-20@{netmd\_\-secure\_\-cmd\_\-20}!libnetmd_secure.c@{libnetmd\_\-secure.c}}
+\subsubsection[{netmd\_\-secure\_\-cmd\_\-20}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-secure\_\-cmd\_\-20 (usb\_\-dev\_\-handle $\ast$ {\em dev}, \/  unsigned char $\ast$ {\em rand\_\-in}, \/  unsigned char $\ast$ {\em rand\_\-out})}\label{libnetmd__secure_8c_a9bf8c5df365bc57724e2243c3b6ac0c6}
+
+
+Exchange 8-\/byte random? 
+
+Definition at line 112 of file libnetmd\_\-secure.c.
+
+References SECURE\_\-CMD\_\-HDR.\index{libnetmd\_\-secure.c@{libnetmd\_\-secure.c}!netmd\_\-secure\_\-cmd\_\-21@{netmd\_\-secure\_\-cmd\_\-21}}
+\index{netmd\_\-secure\_\-cmd\_\-21@{netmd\_\-secure\_\-cmd\_\-21}!libnetmd_secure.c@{libnetmd\_\-secure.c}}
+\subsubsection[{netmd\_\-secure\_\-cmd\_\-21}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-secure\_\-cmd\_\-21 (usb\_\-dev\_\-handle $\ast$ {\em dev})}\label{libnetmd__secure_8c_a6b0725919833d9ee270de6858eacad95}
+
+
+Discard random? 
+
+Definition at line 136 of file libnetmd\_\-secure.c.
+
+References SECURE\_\-CMD\_\-HDR.\index{libnetmd\_\-secure.c@{libnetmd\_\-secure.c}!netmd\_\-secure\_\-cmd\_\-22@{netmd\_\-secure\_\-cmd\_\-22}}
+\index{netmd\_\-secure\_\-cmd\_\-22@{netmd\_\-secure\_\-cmd\_\-22}!libnetmd_secure.c@{libnetmd\_\-secure.c}}
+\subsubsection[{netmd\_\-secure\_\-cmd\_\-22}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-secure\_\-cmd\_\-22 (usb\_\-dev\_\-handle $\ast$ {\em dev}, \/  unsigned char $\ast$ {\em hash})}\label{libnetmd__secure_8c_a2b025fb79b938b9fb3fbea6de492dd60}
+
+
+Send 32-\/byte hash? 
+
+Definition at line 160 of file libnetmd\_\-secure.c.
+
+References SECURE\_\-CMD\_\-HDR.\index{libnetmd\_\-secure.c@{libnetmd\_\-secure.c}!netmd\_\-secure\_\-cmd\_\-23@{netmd\_\-secure\_\-cmd\_\-23}}
+\index{netmd\_\-secure\_\-cmd\_\-23@{netmd\_\-secure\_\-cmd\_\-23}!libnetmd_secure.c@{libnetmd\_\-secure.c}}
+\subsubsection[{netmd\_\-secure\_\-cmd\_\-23}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-secure\_\-cmd\_\-23 (usb\_\-dev\_\-handle $\ast$ {\em dev}, \/  unsigned int {\em track\_\-nr}, \/  unsigned char $\ast$ {\em hash\_\-id})}\label{libnetmd__secure_8c_a57054c7202568b9a0453470108ca8053}
+
+
+Get 8-\/byte hash id of a track? 
+
+Definition at line 241 of file libnetmd\_\-secure.c.
+
+References SECURE\_\-CMD\_\-HDR.\index{libnetmd\_\-secure.c@{libnetmd\_\-secure.c}!netmd\_\-secure\_\-cmd\_\-28@{netmd\_\-secure\_\-cmd\_\-28}}
+\index{netmd\_\-secure\_\-cmd\_\-28@{netmd\_\-secure\_\-cmd\_\-28}!libnetmd_secure.c@{libnetmd\_\-secure.c}}
+\subsubsection[{netmd\_\-secure\_\-cmd\_\-28}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-secure\_\-cmd\_\-28 (usb\_\-dev\_\-handle $\ast$ {\em dev}, \/  unsigned int {\em track\_\-type}, \/  unsigned int {\em length\_\-byte}, \/  unsigned int {\em length}, \/  unsigned int $\ast$ {\em track\_\-nr})}\label{libnetmd__secure_8c_a512d29b097dcd5339423d9c28711754b}
+
+
+Prepare USB download? 
+\begin{DoxyParams}{Parameters}
+\item[{\em dev}]USB device handle \item[{\em track\_\-type}]SP=0x006, LP2=0x9402, LP4=0xA800 \item[{\em length\_\-byte}]??? 0x58 and 0x5A have been seen here \item[{\em length}]length of USB download \item[{\em $\ast$track\_\-nr}]new track number \end{DoxyParams}
+
+
+Definition at line 184 of file libnetmd\_\-secure.c.
+
+References SECURE\_\-CMD\_\-HDR.\index{libnetmd\_\-secure.c@{libnetmd\_\-secure.c}!netmd\_\-secure\_\-cmd\_\-40@{netmd\_\-secure\_\-cmd\_\-40}}
+\index{netmd\_\-secure\_\-cmd\_\-40@{netmd\_\-secure\_\-cmd\_\-40}!libnetmd_secure.c@{libnetmd\_\-secure.c}}
+\subsubsection[{netmd\_\-secure\_\-cmd\_\-40}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-secure\_\-cmd\_\-40 (usb\_\-dev\_\-handle $\ast$ {\em dev}, \/  unsigned int {\em track\_\-nr}, \/  unsigned char $\ast$ {\em signature})}\label{libnetmd__secure_8c_a310e69868d2ed87bb5219db4f9f57bcb}
+
+
+Secure delete with 8-\/byte signature? 
+\begin{DoxyParams}{Parameters}
+\item[{\em dev}]USB device handle \item[{\em track\_\-nr}]track number to delete? \item[{\em signature}]8-\/byte signature of deleted track \end{DoxyParams}
+
+
+Definition at line 268 of file libnetmd\_\-secure.c.
+
+References SECURE\_\-CMD\_\-HDR.\index{libnetmd\_\-secure.c@{libnetmd\_\-secure.c}!netmd\_\-secure\_\-cmd\_\-48@{netmd\_\-secure\_\-cmd\_\-48}}
+\index{netmd\_\-secure\_\-cmd\_\-48@{netmd\_\-secure\_\-cmd\_\-48}!libnetmd_secure.c@{libnetmd\_\-secure.c}}
+\subsubsection[{netmd\_\-secure\_\-cmd\_\-48}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-secure\_\-cmd\_\-48 (usb\_\-dev\_\-handle $\ast$ {\em dev}, \/  unsigned int {\em track\_\-nr}, \/  unsigned char $\ast$ {\em hash})}\label{libnetmd__secure_8c_ae04a6dd888cfe0981ddf1214ae9887a7}
+
+
+Verify track with 8-\/byte hash? 
+
+Definition at line 217 of file libnetmd\_\-secure.c.
+
+References SECURE\_\-CMD\_\-HDR.\index{libnetmd\_\-secure.c@{libnetmd\_\-secure.c}!netmd\_\-secure\_\-cmd\_\-80@{netmd\_\-secure\_\-cmd\_\-80}}
+\index{netmd\_\-secure\_\-cmd\_\-80@{netmd\_\-secure\_\-cmd\_\-80}!libnetmd_secure.c@{libnetmd\_\-secure.c}}
+\subsubsection[{netmd\_\-secure\_\-cmd\_\-80}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-secure\_\-cmd\_\-80 (usb\_\-dev\_\-handle $\ast$ {\em dev})}\label{libnetmd__secure_8c_a0b4969a8fc4e247d303a611ed6f12f2f}
+
+
+Start secure session? 
+
+Definition at line 60 of file libnetmd\_\-secure.c.
+
+References SECURE\_\-CMD\_\-HDR.\index{libnetmd\_\-secure.c@{libnetmd\_\-secure.c}!netmd\_\-secure\_\-cmd\_\-81@{netmd\_\-secure\_\-cmd\_\-81}}
+\index{netmd\_\-secure\_\-cmd\_\-81@{netmd\_\-secure\_\-cmd\_\-81}!libnetmd_secure.c@{libnetmd\_\-secure.c}}
+\subsubsection[{netmd\_\-secure\_\-cmd\_\-81}]{\setlength{\rightskip}{0pt plus 5cm}int netmd\_\-secure\_\-cmd\_\-81 (usb\_\-dev\_\-handle $\ast$ {\em dev})}\label{libnetmd__secure_8c_aa376f60375a7acff25d2fd8f50ac6881}
+
+
+End secure session? 
+
+Definition at line 146 of file libnetmd\_\-secure.c.
+
+References SECURE\_\-CMD\_\-HDR.

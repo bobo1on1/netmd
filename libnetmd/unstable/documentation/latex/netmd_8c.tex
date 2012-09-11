@@ -1,0 +1,76 @@
+\section{netmd.c File Reference}
+\label{netmd_8c}\index{netmd.c@{netmd.c}}
+{\ttfamily \#include \char`\"{}libnetmd.h\char`\"{}}\par
+\subsection*{Defines}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bf M3U\_\-LINE\_\-MAX}~128
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void {\bf print\_\-disc\_\-info} (usb\_\-dev\_\-handle $\ast$devh, {\bf minidisc} $\ast$md)
+\item 
+void {\bf print\_\-current\_\-track\_\-info} (usb\_\-dev\_\-handle $\ast$devh)
+\item 
+void {\bf print\_\-syntax} ()
+\item 
+void {\bf import\_\-m3u\_\-playlist} (usb\_\-dev\_\-handle $\ast$devh, const char $\ast$file)
+\item 
+int {\bf main} (int argc, char $\ast$argv[$\,$])
+\end{DoxyCompactItemize}
+
+
+\subsection{Define Documentation}
+\index{netmd.c@{netmd.c}!M3U\_\-LINE\_\-MAX@{M3U\_\-LINE\_\-MAX}}
+\index{M3U\_\-LINE\_\-MAX@{M3U\_\-LINE\_\-MAX}!netmd.c@{netmd.c}}
+\subsubsection[{M3U\_\-LINE\_\-MAX}]{\setlength{\rightskip}{0pt plus 5cm}\#define M3U\_\-LINE\_\-MAX~128}\label{netmd_8c_a0299403f98b1f464954cb16ea5182fb6}
+
+
+Definition at line 28 of file netmd.c.
+
+Referenced by import\_\-m3u\_\-playlist().
+
+\subsection{Function Documentation}
+\index{netmd.c@{netmd.c}!import\_\-m3u\_\-playlist@{import\_\-m3u\_\-playlist}}
+\index{import\_\-m3u\_\-playlist@{import\_\-m3u\_\-playlist}!netmd.c@{netmd.c}}
+\subsubsection[{import\_\-m3u\_\-playlist}]{\setlength{\rightskip}{0pt plus 5cm}void import\_\-m3u\_\-playlist (usb\_\-dev\_\-handle $\ast$ {\em devh}, \/  const char $\ast$ {\em file})}\label{netmd_8c_acfa3695c9f9d89132396ac7b4e12e3ed}
+
+
+Definition at line 367 of file netmd.c.
+
+References M3U\_\-LINE\_\-MAX, netmd\_\-set\_\-title(), and print\_\-syntax().
+
+Referenced by main().\index{netmd.c@{netmd.c}!main@{main}}
+\index{main@{main}!netmd.c@{netmd.c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (int {\em argc}, \/  char $\ast$ {\em argv}[$\,$])}\label{netmd_8c_a0ddf1224851353fc92bfbff6f499fa97}
+
+
+Definition at line 100 of file netmd.c.
+
+References netmd\_\-group::finish, minidisc::groups, import\_\-m3u\_\-playlist(), netmd\_\-group::name, netmd\_\-clean(), netmd\_\-clean\_\-disc\_\-info(), netmd\_\-create\_\-group(), netmd\_\-delete\_\-group(), netmd\_\-delete\_\-track(), netmd\_\-fast\_\-forward(), netmd\_\-get\_\-devname(), netmd\_\-init(), netmd\_\-initialize\_\-disc\_\-info(), netmd\_\-move\_\-group(), netmd\_\-move\_\-track(), netmd\_\-open(), netmd\_\-pause(), netmd\_\-play(), netmd\_\-put\_\-track\_\-in\_\-group(), netmd\_\-rewind(), netmd\_\-set\_\-group\_\-title(), netmd\_\-set\_\-title(), netmd\_\-set\_\-track(), netmd\_\-stop(), netmd\_\-write\_\-disc\_\-header(), netmd\_\-write\_\-track(), print\_\-current\_\-track\_\-info(), print\_\-disc\_\-info(), print\_\-syntax(), netmd\_\-group::start, and test().\index{netmd.c@{netmd.c}!print\_\-current\_\-track\_\-info@{print\_\-current\_\-track\_\-info}}
+\index{print\_\-current\_\-track\_\-info@{print\_\-current\_\-track\_\-info}!netmd.c@{netmd.c}}
+\subsubsection[{print\_\-current\_\-track\_\-info}]{\setlength{\rightskip}{0pt plus 5cm}void print\_\-current\_\-track\_\-info (usb\_\-dev\_\-handle $\ast$ {\em devh})}\label{netmd_8c_aea4e4639caf5d93bdaf6a0222530f2b8}
+
+
+Definition at line 262 of file netmd.c.
+
+References netmd\_\-get\_\-current\_\-track(), netmd\_\-get\_\-playback\_\-position(), and netmd\_\-request\_\-title().
+
+Referenced by main().\index{netmd.c@{netmd.c}!print\_\-disc\_\-info@{print\_\-disc\_\-info}}
+\index{print\_\-disc\_\-info@{print\_\-disc\_\-info}!netmd.c@{netmd.c}}
+\subsubsection[{print\_\-disc\_\-info}]{\setlength{\rightskip}{0pt plus 5cm}void print\_\-disc\_\-info (usb\_\-dev\_\-handle $\ast$ {\em devh}, \/  {\bf minidisc} $\ast$ {\em md})}\label{netmd_8c_ad41623d7049e472358e72af30d533343}
+
+
+Definition at line 286 of file netmd.c.
+
+References bitrates, codecs, find\_\-pair(), netmd\_\-group::finish, minidisc::group\_\-count, minidisc::groups, netmd\_\-track::minute, netmd\_\-pair::name, netmd\_\-group::name, netmd\_\-request\_\-title(), netmd\_\-request\_\-track\_\-bitrate(), netmd\_\-request\_\-track\_\-codec(), netmd\_\-request\_\-track\_\-time(), netmd\_\-track::second, netmd\_\-group::start, and netmd\_\-track::tenth.
+
+Referenced by main().\index{netmd.c@{netmd.c}!print\_\-syntax@{print\_\-syntax}}
+\index{print\_\-syntax@{print\_\-syntax}!netmd.c@{netmd.c}}
+\subsubsection[{print\_\-syntax}]{\setlength{\rightskip}{0pt plus 5cm}void print\_\-syntax ()}\label{netmd_8c_a7428958296f2a81b48b0d1150ff4cce0}
+
+
+Definition at line 460 of file netmd.c.
+
+Referenced by import\_\-m3u\_\-playlist(), and main().
